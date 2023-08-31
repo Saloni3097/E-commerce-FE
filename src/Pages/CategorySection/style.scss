@@ -1,0 +1,32 @@
+.category_section {
+  margin-top: 5px;
+  .image_Box {
+    img.card-img {
+      width: 100%;
+      object-fit: contain;
+      height: 152px;
+      text-align: center;
+    }
+  }
+  a {
+    text-decoration: none;
+    .card {
+      border: none;
+    }
+    .card-title {
+      text-align: center;
+      font-size: 14px;
+
+      text-align: center;
+      font-size: 14px;
+      white-space: nowrap;
+ 
+      overflow: hidden;
+      text-overflow: ellipsis;
+      
+    }
+    .card-text {
+      text-align: center;
+    }
+  }
+}

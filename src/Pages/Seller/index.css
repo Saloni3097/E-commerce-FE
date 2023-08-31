@@ -1,0 +1,35 @@
+._heading{
+    padding: 20px 20px;
+    text-align: center;
+}
+._heading p{
+    margin: 0px !important;
+}
+.side_bar{
+    /* background-color: #F27E4C; */
+    /* padding: 10px 10px; */
+    color: #ffffff;
+    border-radius: 0px 20px 20px 0px;
+    padding: 0px !important;
+    height: 1000px;  
+}
+._btns ul{
+    list-style: none;
+    padding: 0px !important;
+}
+._btns ul li a{
+    padding: 10px 3px;
+    /* padding: 10px 59px; */
+}
+._btns ul li button{
+    /* padding: 10px 3px; */
+    padding: 10px 46px;
+    background: transparent;
+    border: none;
+    width: 100%;
+    color: #ffffff;
+}
+._btns ul li :hover{
+    background-color: #803413;
+    /* padding: 10px 59px; */
+}

@@ -1,0 +1,75 @@
+.password_wrapper {
+  margin-top: 2%;
+  h3 {
+    color: #f27e4c;
+  }
+  .img-Container {
+    img {
+      height: 355px;
+      width: 90%;
+      margin: 5% auto;
+    }
+  }
+  .account {
+    margin: 40px 0 0;
+    font-size: 14px;
+  }
+  .account a {
+    text-decoration: none;
+  }
+  .submit-button {
+    padding: 0.6rem 1.2rem;
+    outline: none;
+    border: 0;
+    color: #fff;
+    border-radius: 4px;
+    background: #f27e4c;
+    margin-top: 20px;
+  }
+  .submit-button:hover {
+    background: #b33b06;
+  }
+  .form {
+    label {
+      font-weight: 500;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+    .text {
+      opacity: 0.5;
+      border: 0.5px solid #1c1c1c;
+      border-radius: 10px;
+    }
+    .error {
+      font-size: 10px;
+      color: #b22b27;
+    }
+  }
+}
+// .modals {
+//   .form-error {
+//     font-size: 10px;
+//     color: #b22b27;
+//   }
+//   label {
+//     font-weight: 500;
+//     font-size: 16px;
+//     margin-top: 12px;
+//   }
+//   button {
+//     justify-content: center;
+//     margin-top: 20px;
+//     background: #f27e4c;
+//     padding: 6px 10px;
+//     border: none;
+//     color: white;
+//     border-radius: 5px;
+//     font-size: 15px;
+//     font-weight: 400;
+//     height: 45px;
+//     width: 141px;
+//   }
+//   button:hover {
+//     background: red;
+//   }
+// }

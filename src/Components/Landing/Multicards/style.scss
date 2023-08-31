@@ -1,0 +1,56 @@
+.product_wrapper {
+  .heading_wrapper {
+    margin-top: 50px;
+    position: relative;
+
+    ::after {
+      position: absolute;
+      content: "";
+      height: 1px;
+      width: 73%;
+      background: #503f77;
+      top: 50%;
+      right: 0;
+      opacity: 0.3;
+    }
+
+    h2 {
+      font-weight: 500;
+      font-size: 34px;
+    }
+  }
+
+  .card_wrapper {
+    height: 320px;
+    text-align: center;
+
+    .card_imgContainer {
+      img {
+        height: 200px;
+      }
+    }
+    .card_title {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+    p {
+      font-size: 16px;
+      margin-bottom: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    // .card_text {
+    //   text-align: center;
+    //   font-weight: 700;
+    // }
+  }
+  .card {
+    border: none;
+  }
+  a {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,30 @@
+.categories_wrapper {
+  box-sizing: border-box;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  .img-container {
+    height: 100px;
+    text-align: center;
+    border: none;
+
+    img {
+      height: 100px;
+      width: 100%;
+    }
+  }
+  a {
+    display: inline-block;
+    text-align: left;
+    text-decoration: none;
+    width: 120px;
+
+    span {
+      display: block;
+      color: #333333;
+      font-size: 16px;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+}

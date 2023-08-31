@@ -1,0 +1,25 @@
+.prod_container {
+  .cardimg {
+    height: 173px;
+    margin-bottom: 88px;
+
+    img.card-img {
+      width: 230px;
+      object-fit: contain;
+      height: 152px;
+    }
+  }
+  a {
+    text-decoration: none;
+    p {
+      color: black !important;
+    }
+    hr {
+      margin-top: -47px;
+      color: black;
+    }
+  }
+  .card {
+    border: none;
+  }
+}
