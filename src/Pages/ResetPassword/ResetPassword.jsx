@@ -1,29 +1,38 @@
 import React from "react";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
 import { useFormik } from "formik";
-// import { forgotPassword } from "../../Components/ApiCalls/apis";
+import { resetPassword } from "../../Components/ApiCalls/apis";
 import { resetPasswordSchema } from "../../Components/Schemas";
+import { ToastContainer, toast } from "react-toastify";
+import { useCookies } from "react-cookie";
 import "./style.scss";
 // import { useNavigate } from "react-router-dom";
 const initialValues = {
   new_password: "",
   confirm_password: "",
 };
-// const getURL = () => {
-//   // alert("The URL of this page is: " + window.location.href);
-//   window.location.href = process.env.REACT_APP_API_URL;
-//   console.log("URL", window.location.href);
-// };
 const ResetPassword = () => {
   //   const navigate = useNavigate();
+  const [setCookie] = useCookies();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
       validationSchema: resetPasswordSchema,
       onSubmit: async (values, action) => {
-        // await forgotPassword(values);
+        // await resetPassword(values);
         console.log("Values", values);
         action.resetForm();
+        try {
+          const response = await resetPassword(values);
+          if (response.data && response.status === 200) {
+            toast.success(response.data.message);
+            setCookie("Token", `${response.data.token}`, {
+              path: "/",
+            });
+          }
+        } catch (error) {
+          toast.error(error.response.data);
+        }
       },
     });
 
@@ -84,6 +93,18 @@ const ResetPassword = () => {
               </Button>
             </Form>
           </Col>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
         </Row>
       </Container>
     </section>

@@ -4,17 +4,14 @@ import logo from "../../Assets/Images/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import "./style.scss";
-import Login from "../../Pages/Login/Login";
-// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-// import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-// import SecondaryDropDownMenu from "./SecondaryDropDownMenu";
+// import Login from "../../Pages/Login/Login";
+import Login from "../../Components/Login/Login";
 
 const Header = () => {
   const [logInBoxOpen, setLogInBoxOpen] = useState(false);
   const handleClose = () => {
     setLogInBoxOpen(false);
   };
-  // const [toggleSecondaryDropDown, setToggleSecondaryDropDown] = useState(false);
   return (
     <>
       <section className="navbar_wrapper">
@@ -46,43 +43,19 @@ const Header = () => {
                     >
                       Login
                     </Button>
-                    <NavLink className="nav_menu" to="#">
-                      Become a Seller
+                    <NavLink className="nav_menu" to="/seller">
+                      Become a seller
                     </NavLink>
-                    {/* <NavLink className="nav_menu" to="#">
-                      <span
-                        className="moreDropDown hidden sm:flex items-center font-medium gap-1 cursor-pointer"
-                        onClick={() =>
-                          setToggleSecondaryDropDown(!toggleSecondaryDropDown)
-                        }
-                      >
-                        More
-                        <span>
-                          {toggleSecondaryDropDown ? (
-                            <ExpandLessIcon sx={{ fontSize: "16px" }} />
-                          ) : (
-                            <ExpandMoreIcon sx={{ fontSize: "16px" }} />
-                          )}
-                        </span>
-                      </span>
-                      {toggleSecondaryDropDown && <SecondaryDropDownMenu />}
-                    </NavLink> */}
                     <NavLink
                       className="nav_menu"
                       to="/"
-                      style={({ isActive }) => ({
-                        color: isActive ? "#f27e4c" : "#333333",
-                      })}
+                      // style={({ isActive }) => ({
+                      //   color: isActive ? "#f27e4c" : "#333333",
+                      // })}
                     >
                       Home
                     </NavLink>
-                    <NavLink
-                      className="nav_menu"
-                      to="/cart"
-                      style={({ isActive }) => ({
-                        color: isActive ? "#f27e4c" : "#333333",
-                      })}
-                    >
+                    <NavLink className="nav_menu" to="/cart">
                       Cart
                     </NavLink>
                   </Nav>

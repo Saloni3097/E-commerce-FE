@@ -6,7 +6,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { signupSchema } from "../../Components/Schemas";
 import { ToastContainer, toast } from "react-toastify";
 import { useCookies } from "react-cookie";
-import Login from "../../Pages/Login/Login";
+// import Login from "../../Pages/Login/Login";
+import Login from "../../Components/Login/Login";
 import "./style.scss";
 const initialValues = {
   username: "",
@@ -18,6 +19,10 @@ const initialValues = {
 const Signup = () => {
   const [cookies, setCookie, removeCookie] = useCookies();
   const navigate = useNavigate();
+  const [logInBoxOpen, setLogInBoxOpen] = useState(false);
+  const handleClose = () => {
+    setLogInBoxOpen(false);
+  };
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
@@ -39,11 +44,6 @@ const Signup = () => {
         } catch (error) {
           toast.error(error.response.data);
         }
-        // if (values.role === "2") {
-        //   navigate("/login");
-        // } else {
-        //   navigate("/");
-        // }
         action.resetForm();
       },
     });
@@ -141,16 +141,20 @@ const Signup = () => {
               </Form>
               <p className="sign-up">
                 Already have an account?{" "}
-                {/* <a
+                <a
                   style={{ color: "rgb(123, 190, 254)" }}
                   onClick={() => {
-                    navigate("/login");
+                    setLogInBoxOpen(true);
                   }}
                 >
-                  Sign In now
-                </a> */}
-                <Link to="/login">Sign In Now</Link>
+                  Sign In Now
+                </a>
               </p>
+              <Login
+                show={logInBoxOpen}
+                onHide={handleClose}
+                boxProp={setLogInBoxOpen}
+              />
             </Col>
             <ToastContainer
               position="top-right"

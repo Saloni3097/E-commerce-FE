@@ -3,20 +3,29 @@ import Cookies from "js-cookie";
 
 const token = Cookies.get("token");
 
-const tokens =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiIxIiwiaWF0IjoxNjkyODYzNTI3LCJleHAiOjE2OTI4NjcxMjd9.84vrKkh3GjIKWMXPd2jzZOo6pzXNmHk2OhXY2ePOH7Y";
+// const tokens =
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiIxIiwiaWF0IjoxNjkyODYzNTI3LCJleHAiOjE2OTI4NjcxMjd9.84vrKkh3GjIKWMXPd2jzZOo6pzXNmHk2OhXY2ePOH7Y";
 
 // Login
 export const login = async (values) => {
-  const res = await axios({
-    method: "POST",
-    url: "https://e-commerce-sbtq.onrender.com/api/user/login",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: values,
-  });
-  return res;
+  try {
+    const res = await axios({
+      method: "POST",
+      url: "https://e-commerce-sbtq.onrender.com/api/user/login",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: values,
+    });
+    // console.log(res.data);
+    return res;
+  } catch (error) {
+    let errorRes = error.response.data.error;
+    // console.log(errorRes);
+    return errorRes;
+  }
+
+  // return res;
 };
 
 // Signup
@@ -42,7 +51,7 @@ export const getCategories = async () => {
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
-      Authorization: `Bearer ${tokens}`,
+      // Authorization: `Bearer ${tokens}`,
     },
   });
   console.log("res", res);
@@ -160,4 +169,20 @@ export const getProductDetail = async (payload) => {
     },
   });
   return res;
+};
+
+//Reset Password
+export const resetPassword = async (values) => {
+  await axios({
+    url: "https://e-commerce-sbtq.onrender.com/api/user/reset_password",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: values,
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(err);
+    });
 };

@@ -17,17 +17,6 @@ const initialValues1 = {
   confirm_password: "",
 };
 
-// const All = () => {
-//   // alert("The URL of this page is: " + window.location.href);
-//   window.location.href = process.env.REACT_APP_BASE_URL;
-//   window.location.href = process.env.REACT_APP_URL;
-//   console.log("URL", window.location.href);
-// };
-
-// function navigateToPage() {
-//   window.location.href = process.env.REACT_APP_BASE_URL;
-// }
-
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
@@ -46,8 +35,8 @@ const ForgotPassword = () => {
     initialValues1,
     validationSchema: resetPasswordSchema,
     onSubmit: async (values, action) => {
-      // await forgotPassword(values);
-      // console.log("Values", values);
+      await forgotPassword(values);
+      console.log("Values", values);
       action.resetForm();
     },
   });
