@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../Pages/Home/Home";
 import Login from "../Components/Login/Login";
 import Signup from "../Pages/Signup/Signup";
@@ -34,7 +34,6 @@ const Routers = () => {
         <Route index element={<Home />} />
       </Route>
       <Route path="/seller" element={<SellerLogin />} />
-      {/* <Route index element={} /> */}
       <Route path="/seller/dashboard" element={<Seller />}>
         <Route index element={<AllProducts />} />
         <Route path="/seller/dashboard/addProduct" element={<AddProduct />} />
