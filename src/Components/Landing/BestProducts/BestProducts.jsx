@@ -29,6 +29,7 @@ const BestProducts = ({ categoryNames }) => {
   const product = async () => {
     try {
       const res = await getAllProducts();
+      console.log("res>>>>: ", bestProducts);
       setBestProducts(res?.data?.data);
     } catch (err) {
       console.error(err);
@@ -37,7 +38,7 @@ const BestProducts = ({ categoryNames }) => {
       categoryNames?.map((category) => ({
         category,
         products: bestProducts.filter(
-          (product) => product.category === category
+          (product) => product.categoryId === category
         ),
       }))
     );
@@ -58,16 +59,16 @@ const BestProducts = ({ categoryNames }) => {
                 {products?.map((product) => (
                   <Col>
                     <div key={product?.id}>
-                      <Link to={`/productDetail/${product?.productName}`}>
+                      <Link to={`/productDetail/${product?.id}`}>
                         <Card className="bestCard_wrapper">
                           <Card.Body className="card_imgContainer">
                             <Card.Img src={product?.productImage}></Card.Img>
                             <Card.Title className="mt-3 card_title">
                               {product?.productName}
                             </Card.Title>
-                            <p>{product?.description}</p>
+                            {/* <p>{product?.description}</p> */}
                             <p>₹{product?.price}</p>
-                            <p>{product?.inStock}</p>
+                            {/* <p>{product?.inStock}</p> */}
                           </Card.Body>
                         </Card>
                       </Link>

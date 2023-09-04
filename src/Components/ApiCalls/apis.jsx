@@ -2,10 +2,6 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const token = Cookies.get("token");
-
-// const tokens =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiIxIiwiaWF0IjoxNjkyODYzNTI3LCJleHAiOjE2OTI4NjcxMjd9.84vrKkh3GjIKWMXPd2jzZOo6pzXNmHk2OhXY2ePOH7Y";
-
 // Login
 export const login = async (values) => {
   try {
@@ -67,7 +63,7 @@ export const productUplolad = async (values, id) => {
     headers: {
       "Content-Type": "multipart/form-data",
       // Authorization: `Bearer ${token}`,
-      Authentication: "Bearer {token}",
+      Authentication: `Bearer ${token}`,
     },
     data: values,
   })
@@ -96,9 +92,12 @@ export const getSellerProducts = async () => {
 
 // Get All Products
 export const getAllProducts = async (categoryName) => {
+  console.log(categoryName);
   const res = await axios({
     method: "GET",
-    url: `https://e-commerce-sbtq.onrender.com/api/product/getProducts?categoryName=${categoryName}`,
+    url: `https://e-commerce-sbtq.onrender.com/api/product/getProducts?productName=${categoryName}`,
+    //  api/product/getProducts?productName=dg
+
     headers: {
       "Content-Type": "application/json",
     },
@@ -134,7 +133,7 @@ export const getProducts = async () => {
 //Add to Cart
 export const addToCart = async () => {
   const res = await axios({
-    method: "get",
+    method: "GET",
     url: "https://fakestoreapi.com/carts",
     headers: {
       "Content-Type": "application/json",
@@ -145,44 +144,49 @@ export const addToCart = async () => {
 
 //Forgot Password
 export const forgotPassword = async (values) => {
-  await axios({
-    url: "https://e-commerce-sbtq.onrender.com/api/user/forget_password",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: values,
-  })
-    .then((res) => res.json())
-    .catch((err) => {
-      console.log(err);
+  try {
+    const res = await axios({
+      url: "https://e-commerce-sbtq.onrender.com/api/user/forget_password",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: values,
     });
+    return res;
+  } catch (error) {
+    let errorMessage = error.response.data.message;
+    // console.log("Error: ", errorMessage);
+    return errorMessage;
+  }
 };
 
+//Reset Password
+export const resetPassword = async (values) => {
+  try {
+    const res = await axios({
+      url: "https://e-commerce-sbtq.onrender.com/api/user/reset_password",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: values,
+    });
+    return res;
+  } catch (error) {
+    let errorMsg = error.response.data.message;
+    console.log("ErrorMsg: ", errorMsg);
+    return errorMsg;
+  }
+};
 // Get Product Detail
-export const getProductDetail = async (payload) => {
+export const getProductDetail = async (id) => {
   const res = await axios({
     method: "get",
-    url: `https://fakestoreapi.com/products/${payload}`,
+    url: `https://e-commerce-sbtq.onrender.com/api/product/products/${id}`,
     headers: {
       "Content-Type": "application/json",
     },
   });
   return res;
-};
-
-//Reset Password
-export const resetPassword = async (values) => {
-  await axios({
-    url: "https://e-commerce-sbtq.onrender.com/api/user/reset_password",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: values,
-  })
-    .then((res) => res.json())
-    .catch((err) => {
-      console.log(err);
-    });
 };

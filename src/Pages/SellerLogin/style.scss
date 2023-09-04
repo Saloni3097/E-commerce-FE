@@ -9,4 +9,88 @@
     font-size: 40px;
     font-weight: 600;
   }
+  .abtSection {
+    box-shadow: rgba(84, 130, 255, 0.12) 0px 0px 21px;
+  }
+  .testmonialSection {
+    .testimonialHeading {
+      margin: 3rem auto;
+    }
+    .testimonialHeading h2 {
+      font-size: 40px;
+      font-weight: 600;
+    }
+    .testimonialText h5 {
+      font-weight: 600;
+    }
+    .slick-slide img {
+      display: inline !important;
+    }
+    .testimonialImage {
+      text-align: center;
+    }
+  }
+
+  .dataSection {
+    margin-top: 4rem;
+    .dataContent h4 {
+      font-weight: 600;
+      margin-bottom: 0px !important;
+    }
+    .dataContent hr {
+      margin: 0px !important;
+      width: 5%;
+      position: relative;
+      height: 6px;
+      background: rgb(250, 123, 83);
+      opacity: 100%;
+      border: 0px;
+      border-radius: 10px;
+    }
+    .dataContent {
+      .createAcc p {
+        padding-right: 10rem;
+        padding-top: 2rem;
+        font-size: 14px;
+        color: #6c6c6c;
+      }
+      .categories {
+        box-shadow: rgba(2, 124, 213, 0.16) 0px 0px 12px;
+        border-radius: 10px;
+        padding: 15px;
+      }
+      .categories ul {
+        list-style: none;
+        display: inline-block;
+      }
+      .categories ul li {
+        padding: 10px;
+      }
+      .categories ul li a {
+        border: none;
+        color: #000000;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .listProducts p {
+        padding-right: 10rem;
+        padding-top: 2rem;
+        font-size: 14px;
+        color: #6c6c6c;
+      }
+      .listProducts {
+        background-color: rgb(242, 250, 255);
+        padding: 30px;
+      }
+      .growFaster p {
+        padding-right: 10rem;
+        padding-top: 2rem;
+        font-size: 14px;
+        color: #000000;
+      }
+      .growFaster ul {
+        list-style: none;
+      }
+    }
+  }
 }

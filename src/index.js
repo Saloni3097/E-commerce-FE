@@ -3,19 +3,31 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import "../src/Assets/Styles/styles.scss";
 import { CookiesProvider } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
-// import { CookiesProvider } from "react-cookie";
+import { ToastContainer } from "react-toastify";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <CookiesProvider>
     <React.StrictMode>
-      <Router>
+      <BrowserRouter>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         <App />
-      </Router>
+      </BrowserRouter>
     </React.StrictMode>
   </CookiesProvider>
 );

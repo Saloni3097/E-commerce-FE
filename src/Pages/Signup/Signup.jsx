@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import { signupData } from "../../Components/ApiCalls/apis";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { signupSchema } from "../../Components/Schemas";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
-// import Login from "../../Pages/Login/Login";
 import Login from "../../Components/Login/Login";
 import "./style.scss";
 const initialValues = {
@@ -17,7 +16,7 @@ const initialValues = {
 };
 
 const Signup = () => {
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [cookies, setCookie] = useCookies();
   const navigate = useNavigate();
   const [logInBoxOpen, setLogInBoxOpen] = useState(false);
   const handleClose = () => {
@@ -156,18 +155,6 @@ const Signup = () => {
                 boxProp={setLogInBoxOpen}
               />
             </Col>
-            <ToastContainer
-              position="top-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-            />
           </Row>
         </Container>
       </section>

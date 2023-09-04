@@ -1,15 +1,15 @@
 import React from "react";
 import { Col, Container, Row, Form, Modal, Button } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import { loginSchema } from "../../Components/Schemas";
 import { login } from "../../Components/ApiCalls/apis";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import jwt from "jwt-decode";
 import "./style.scss";
-import { useCookies } from "react-cookie";
 const Login = (props) => {
-  // const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies([]);
+  const navigate = useNavigate();
   const initialValues = {
     email: "",
     password: "",
@@ -30,20 +30,22 @@ const Login = (props) => {
       onSubmit: async (values, action) => {
         const res = await login(values);
         // console.log("values>>>>", res);
-        if (res.data && res.status === 200) {
+        const tokenAns = jwt(res.data.jwtToken);
+        if (res.status === 200 && res.data && res.data.jwtToken) {
+          Cookies.set("token", `${res.data.jwtToken}`);
           toast.success(res.data.message);
           // console.log("Success", res.data.message);
-          setTimeout(() => {
-            props.onHide();
-          }, 2000);
-          setCookie("Token", `${res.data.token}`, {
-            path: "/",
-          });
+          if (tokenAns.role === "3") {
+            navigate("/seller/dashboard");
+          } else {
+            setTimeout(() => {
+              props.onHide();
+            }, 2000);
+          }
         } else {
           toast.error(res);
           // console.log("Error", res);
         }
-
         action.resetForm();
       },
     });
@@ -110,11 +112,7 @@ const Login = (props) => {
                       ) : null}
                     </Form.Group>
 
-                    <Button
-                      className="login-button"
-                      type="submit"
-                      // onClick={notify}
-                    >
+                    <Button className="login-button" type="submit">
                       Login
                     </Button>
                   </Form>
@@ -132,18 +130,6 @@ const Login = (props) => {
                     </span>
                   </div>
                 </Col>
-                <ToastContainer
-                  position="top-right"
-                  // autoClose={10000}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  closeOnClick
-                  rtl={false}
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                  theme="light"
-                />
               </Row>
             </Modal.Body>
           </Modal>

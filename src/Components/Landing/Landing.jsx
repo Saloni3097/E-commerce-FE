@@ -14,7 +14,6 @@ const Landing = () => {
   }, []);
 
   const getcategory = async () => {
-    console.log("res");
     try {
       const res = await getCategories();
       setCategories(res?.data);

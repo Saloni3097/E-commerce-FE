@@ -3,9 +3,8 @@ import { Nav, Navbar, Container, Button, Row, Col } from "react-bootstrap";
 import logo from "../../Assets/Images/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
-import "./style.scss";
-// import Login from "../../Pages/Login/Login";
 import Login from "../../Components/Login/Login";
+import "./style.scss";
 
 const Header = () => {
   const [logInBoxOpen, setLogInBoxOpen] = useState(false);
@@ -44,7 +43,7 @@ const Header = () => {
                       Login
                     </Button>
                     <NavLink className="nav_menu" to="/seller">
-                      Become a seller
+                      Become a Seller
                     </NavLink>
                     <NavLink
                       className="nav_menu"

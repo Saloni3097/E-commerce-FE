@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import { resetPassword } from "../../Components/ApiCalls/apis";
 import { resetPasswordSchema } from "../../Components/Schemas";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
+import Login from "../../Components/Login/Login";
+import Loader from "../../Components/Loader/Loader";
 import "./style.scss";
 // import { useNavigate } from "react-router-dom";
 const initialValues = {
@@ -12,27 +14,30 @@ const initialValues = {
   confirm_password: "",
 };
 const ResetPassword = () => {
-  //   const navigate = useNavigate();
-  const [setCookie] = useCookies();
+  // const navigate = useNavigate();
+  // const [setCookie] = useCookies();
+  const [logInBoxOpen, setLogInBoxOpen] = useState(false);
+  const handleClose = () => {
+    setLogInBoxOpen(false);
+  };
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
       validationSchema: resetPasswordSchema,
       onSubmit: async (values, action) => {
-        // await resetPassword(values);
+        const response = await resetPassword(values);
+        console.log("Response: ", response);
         console.log("Values", values);
-        action.resetForm();
-        try {
-          const response = await resetPassword(values);
-          if (response.data && response.status === 200) {
-            toast.success(response.data.message);
-            setCookie("Token", `${response.data.token}`, {
-              path: "/",
-            });
-          }
-        } catch (error) {
-          toast.error(error.response.data);
+        if (response.data && response.status === 200) {
+          toast.success(response.data.message);
+          // setCookie("Token", `${response.data.token}`, {
+          //   path: "/",
+          // });
+          // setLogInBoxOpen(true);
+        } else {
+          toast.error(response);
         }
+        action.resetForm();
       },
     });
 
@@ -66,8 +71,8 @@ const ResetPassword = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {errors.new_password && touched.new_password ? (
-                  <p className="error">{errors.new_password}</p>
+                {errors?.new_password && touched?.new_password ? (
+                  <p className="error">{errors?.new_password}</p>
                 ) : null}
               </Form.Group>
 
@@ -83,28 +88,25 @@ const ResetPassword = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {errors.confirm_password && touched.confirm_password ? (
-                  <p className="error">{errors.confirm_password}</p>
+                {errors?.confirm_password && touched?.confirm_password ? (
+                  <p className="error">{errors?.confirm_password}</p>
                 ) : null}
               </Form.Group>
 
-              <Button className="reset-button" type="submit">
+              <Button
+                className="reset-button"
+                type="submit"
+                onClick={() => <Loader />}
+              >
                 Reset Password
               </Button>
             </Form>
+            <Login
+              show={logInBoxOpen}
+              onHide={handleClose}
+              boxProp={setLogInBoxOpen}
+            />
           </Col>
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
         </Row>
       </Container>
     </section>

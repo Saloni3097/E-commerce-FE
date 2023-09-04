@@ -1,20 +1,15 @@
 import React from "react";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import { forgotPassword } from "../../Components/ApiCalls/apis";
 import { useNavigate } from "react-router-dom";
-import {
-  forgotPasswordSchema,
-  resetPasswordSchema,
-} from "../../Components/Schemas";
+import { forgotPasswordSchema } from "../../Components/Schemas";
+import Cookies from "js-cookie";
+// import jwt from "jwt-decode";
 import "./style.scss";
 const initialValues = {
   email: "",
-};
-
-const initialValues1 = {
-  new_password: "",
-  confirm_password: "",
 };
 
 const ForgotPassword = () => {
@@ -24,22 +19,20 @@ const ForgotPassword = () => {
       initialValues,
       validationSchema: forgotPasswordSchema,
       onSubmit: async (values, action) => {
-        await forgotPassword(values);
-        console.log("Values", values);
+        const res = await forgotPassword(values);
+        // console.log("Response: ", res);
+        // console.log("Values", values);
+        // const tokenAns = jwt(res.data.jwtToken);
+        if (res.status === 200 && res.data && res.data.jwtToken) {
+          Cookies.set("token", `${res.data.jwtToken}`);
+          toast.success(res.data.msg);
+        } else {
+          toast.error(res);
+          // console.log("Error", res);
+        }
         action.resetForm();
       },
     });
-
-  //For Reset Password
-  useFormik({
-    initialValues1,
-    validationSchema: resetPasswordSchema,
-    onSubmit: async (values, action) => {
-      await forgotPassword(values);
-      console.log("Values", values);
-      action.resetForm();
-    },
-  });
 
   return (
     <section className="password_wrapper">
@@ -91,16 +84,6 @@ const ForgotPassword = () => {
                 Create an account
               </a>
             </p>
-            {/* <Button
-              className="submit-button"
-              type="submit"
-              // onClick={() => {
-              //   navigate("/resetPassword");
-              // }}
-              onClick={navigateToPage}
-            >
-              Reset Password
-            </Button> */}
           </Col>
         </Row>
       </Container>
