@@ -87,17 +87,18 @@ export const getSellerProducts = async () => {
 };
 
 // Get All Products
-export const getAllProducts = async (categoryName) => {
-  console.log(categoryName);
+export const getAllProducts = async () => {
+  // console.log(categoryName);
   const res = await axios({
     method: "GET",
-    url: `https://e-commerce-sbtq.onrender.com/api/product/getProducts?productName=${categoryName}`,
+    url: `https://e-commerce-sbtq.onrender.com/api/product/getProducts`,
     //  api/product/getProducts?productName=dg
 
     headers: {
       "Content-Type": "application/json",
     },
   });
+  console.log("res>", res);
   return res;
 };
 
@@ -115,16 +116,16 @@ export const getProductByCategory = async (payload) => {
 };
 
 // Get All Products by FAKEAPI
-export const getProducts = async () => {
-  const res = await axios({
-    method: "GET",
-    url: "https://fakestoreapi.com/products",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  return res;
-};
+// export const getProducts = async () => {
+//   const res = await axios({
+//     method: "GET",
+//     url: "https://fakestoreapi.com/products",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   });
+//   return res;
+// };
 
 //Add to Cart
 export const addToCart = async () => {
@@ -159,6 +160,7 @@ export const forgotPassword = async (values) => {
 
 //Reset Password
 export const resetPassword = async (values) => {
+  // debugger;
   try {
     const res = await axios({
       url: "https://e-commerce-sbtq.onrender.com/api/user/reset_password",

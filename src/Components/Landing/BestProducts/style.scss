@@ -21,13 +21,11 @@
   }
 
   .bestCard_wrapper {
-    //   height: 380px;
-    text-align: center;
-
     .card_imgContainer {
+      width: 85%;
+      text-align: center;
       img {
-        height: 220px;
-        width: 95%;
+        height: 250px;
       }
     }
     .card_title {
@@ -38,6 +36,7 @@
     }
     p {
       font-size: 16px;
+      text-align: center;
       margin-bottom: 0;
       white-space: nowrap;
       overflow: hidden;

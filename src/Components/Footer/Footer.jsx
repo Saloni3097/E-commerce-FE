@@ -14,7 +14,6 @@ const Footer = () => {
         <Container className="container_wrapper">
           <Row>
             <Col lg={4}>
-              {/* <img src={logo} className="pt-3" /> */}
               <p>
                 An e-commerce website is one that allows people to buy and sell
                 physical goods, services, and digital products over the
@@ -60,8 +59,6 @@ const Footer = () => {
                   {" "}
                   <Link to="/login">Login</Link>
                 </li>
-                {/* <li>Docs</li>
-                <li>Contact</li>   */}
               </ul>
             </Col>
 
@@ -78,10 +75,7 @@ const Footer = () => {
                 </li>
 
                 <li>
-                  <Link
-                    to="https://twitter.com/flipkart"
-                    target="_blank"
-                  >
+                  <Link to="https://twitter.com/flipkart" target="_blank">
                     <img src={twitter} />
                   </Link>
                 </li>
@@ -91,7 +85,7 @@ const Footer = () => {
                     to="https://in.linkedin.com/company/flipkart"
                     target="_blank"
                   >
-                  <img src={linkedin} />
+                    <img src={linkedin} />
                   </Link>
                 </li>
 
@@ -100,10 +94,6 @@ const Footer = () => {
                     <img src={facebook} />
                   </Link>
                 </li>
-
-                {/* <li>
-                <Link to=""> <img src={discord} /></Link>
-              </li> */}
               </ul>
             </Col>
           </Row>

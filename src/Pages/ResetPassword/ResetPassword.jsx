@@ -5,9 +5,6 @@ import { resetPassword } from "../../Components/ApiCalls/apis";
 import { resetPasswordSchema } from "../../Components/Schemas";
 import { toast } from "react-toastify";
 import Login from "../../Components/Login/Login";
-import Loader from "../../Components/Loader/Loader";
-import Cookies from "js-cookie";
-import jwt from "jwt-decode";
 import "./style.scss";
 // import { useNavigate } from "react-router-dom";
 const initialValues = {
@@ -26,15 +23,13 @@ const ResetPassword = () => {
       validationSchema: resetPasswordSchema,
       onSubmit: async (values, action) => {
         const res = await resetPassword(values);
-        // console.log("Response: ", res);
-        // console.log("Values", values);
-        if (res.data && res.status === 200) {
-          Cookies.get("token", `${res.data.jwtToken}`);
-          // Cookies.set("token", `${res.data.jwtToken}`);
-          toast.success(res.data.msg);
+        console.log("Response", res);
+        if (res.status === 200 && res.data) {
+          toast.success(res.data.message);
         } else {
           toast.error(res);
         }
+
         action.resetForm();
       },
     });
@@ -90,12 +85,7 @@ const ResetPassword = () => {
                   <p className="error">{errors?.confirmPassword}</p>
                 ) : null}
               </Form.Group>
-
-              <Button
-                className="reset-button"
-                type="submit"
-                onClick={() => <Loader />}
-              >
+              <Button className="reset-button" type="submit">
                 Reset Password
               </Button>
             </Form>

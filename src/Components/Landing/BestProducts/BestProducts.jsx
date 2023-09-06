@@ -9,10 +9,9 @@ import { getAllProducts } from "../../ApiCalls/apis";
 import { Link } from "react-router-dom";
 import "./style.scss";
 
-const BestProducts = ({ categoryNames }) => {
+const BestProducts = ({ categoryIds }) => {
   const [bestProducts, setBestProducts] = useState([]);
   const [productByCategory, setProductByCategory] = useState([]);
-
   const settings = {
     dots: true,
     infinite: false,
@@ -24,18 +23,17 @@ const BestProducts = ({ categoryNames }) => {
   useEffect(() => {
     product();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryNames]);
+  }, [categoryIds]);
 
   const product = async () => {
     try {
       const res = await getAllProducts();
-      console.log("res>>>>: ", bestProducts);
       setBestProducts(res?.data?.data);
     } catch (err) {
       console.error(err);
     }
     setProductByCategory(
-      categoryNames?.map((category) => ({
+      categoryIds?.map((category) => ({
         category,
         products: bestProducts.filter(
           (product) => product.categoryId === category
@@ -68,7 +66,7 @@ const BestProducts = ({ categoryNames }) => {
                             </Card.Title>
                             {/* <p>{product?.description}</p> */}
                             <p>₹{product?.price}</p>
-                            {/* <p>{product?.inStock}</p> */}
+                            <p>{product?.inStock}</p>
                           </Card.Body>
                         </Card>
                       </Link>

@@ -1,0 +1,31 @@
+.name_wrapper {
+  .name_button {
+    padding: 0.6rem 1.2rem;
+    outline: none;
+    border: 0;
+    color: #fff;
+    border-radius: 4px;
+    background: #f27e4c;
+    margin-top: -3px;
+    margin-left: 0px;
+  }
+  .name_button:hover {
+    background: #b33b06;
+  }
+}
+
+.email_wrapper {
+  .save_button {
+    padding: 0.6rem 1.2rem;
+    outline: none;
+    border: 0;
+    color: #fff;
+    border-radius: 4px;
+    background: #f27e4c;
+    margin-top: 26px;
+    margin-left: 104px;
+  }
+  .save_button:hover {
+    background: #b33b06;
+  }
+}

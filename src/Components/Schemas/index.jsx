@@ -21,7 +21,13 @@ export const addProductSchema = Yup.object({
 export const signupSchema = Yup.object({
   username: Yup.string().min(2).required("Please enter your username!"),
   email: Yup.string().email().required("Please enter your email!"),
-  password: Yup.string().min(6).required("Please enter the password!"),
+  password: Yup.string()
+    .min(8)
+    .required("Please enter the password!")
+    .matches(/[0-9]/, "Password requires a number")
+    .matches(/[a-z]/, "Password requires a lowercase letter")
+    .matches(/[A-Z]/, "Password requires an uppercase letter")
+    .matches(/[^\w]/, "Password requires a symbol"),
   role: Yup.string().required("Please select role!"),
 });
 
@@ -32,11 +38,13 @@ export const forgotPasswordSchema = Yup.object({
 
 //Reset Password Schema
 export const resetPasswordSchema = Yup.object({
-  newPassword: Yup.string().min(6).required("Please enter the password!"),
-  // .matches(/[0-9]/, "Password requires a number")
-  // .matches(/[a-z]/, "Password requires a lowercase letter")
-  // .matches(/[A-Z]/, "Password requires an uppercase letter")
-  // .matches(/[^\w]/, "Password requires a symbol"),
+  newPassword: Yup.string()
+    .min(8)
+    .required("Please enter the password!")
+    .matches(/[0-9]/, "Password requires a number")
+    .matches(/[a-z]/, "Password requires a lowercase letter")
+    .matches(/[A-Z]/, "Password requires an uppercase letter")
+    .matches(/[^\w]/, "Password requires a symbol"),
   confirmPassword: Yup.string()
     .required()
     .oneOf([Yup.ref("newPassword"), null], "Passwords must match"),

@@ -64,15 +64,14 @@ const ProductDetail = (props) => {
 
     // </Container>
 
-    <Container className="detail_wrapper">
-      {props?.product_detail[0]
-        ? Object.entries(props?.product_detail[0]).map(([key, value]) => {
-            // debugger;
-            if (valueToshow.includes(key)) {
-              <h4>{key}</h4>;
-              console.log(key, ":", value);
-            }
-
+    props?.product_detail[0]
+      ? Object.entries(props?.product_detail[0]).map(([key, value]) => {
+          // debugger;
+          if (valueToshow.includes(key)) {
+            <h4>{key}</h4>;
+            console.log(key, ":", value);
+          }
+          <Container className="detail_wrapper">
             <Row className="product_row">
               <Col lg={6}>
                 <img
@@ -108,12 +107,13 @@ const ProductDetail = (props) => {
                   </ul>
                 </div>
               </Col>
-            </Row>;
-          })
-        : ""}
+            </Row>
+            ;
+          </Container>;
+        })
+      : ""
 
-      {/* ))} */}
-    </Container>
+    // ))}
   );
 };
 
