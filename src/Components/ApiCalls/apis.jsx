@@ -17,11 +17,9 @@ export const login = async (values) => {
     return res;
   } catch (error) {
     let errorRes = error.response.data.error;
-    // console.log(errorRes);
+    // console.log("Error: ", errorRes);
     return errorRes;
   }
-
-  // return res;
 };
 
 // Signup
@@ -41,16 +39,15 @@ export const signupData = async (values) => {
 export const getCategories = async () => {
   const res = await axios({
     mode: "cors",
-    // url: "https://fakestoreapi.com/products/categories",
     url: "https://e-commerce-sbtq.onrender.com/api/category/Category",
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
-      // Authorization: `Bearer ${tokens}`,
+      Authorization: `Bearer ${token}`,
     },
   });
-  console.log("res", res);
+  // console.log("res", res);
   return res;
 };
 
@@ -62,8 +59,7 @@ export const productUplolad = async (values, id) => {
     method: "POST",
     headers: {
       "Content-Type": "multipart/form-data",
-      // Authorization: `Bearer ${token}`,
-      Authentication: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
     data: values,
   })
@@ -156,7 +152,7 @@ export const forgotPassword = async (values) => {
     return res;
   } catch (error) {
     let errorMessage = error.response.data.message;
-    // console.log("Error: ", errorMessage);
+    console.log("Error: ", errorMessage);
     return errorMessage;
   }
 };
@@ -169,12 +165,15 @@ export const resetPassword = async (values) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${token}`,
       },
       data: values,
     });
+    console.log("res token", res);
     return res;
   } catch (error) {
-    let errorMsg = error.response.data.message;
+    let errorMsg = error.response.data.msg;
     console.log("ErrorMsg: ", errorMsg);
     return errorMsg;
   }

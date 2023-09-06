@@ -6,7 +6,7 @@ import { forgotPassword } from "../../Components/ApiCalls/apis";
 import { useNavigate } from "react-router-dom";
 import { forgotPasswordSchema } from "../../Components/Schemas";
 import Cookies from "js-cookie";
-// import jwt from "jwt-decode";
+import jwt from "jwt-decode";
 import "./style.scss";
 const initialValues = {
   email: "",
@@ -22,8 +22,9 @@ const ForgotPassword = () => {
         const res = await forgotPassword(values);
         // console.log("Response: ", res);
         // console.log("Values", values);
-        // const tokenAns = jwt(res.data.jwtToken);
         if (res.status === 200 && res.data && res.data.jwtToken) {
+          const tokenResp = jwt(res.data.jwtToken);
+          // console.log("Token Res", tokenResp);
           Cookies.set("token", `${res.data.jwtToken}`);
           toast.success(res.data.msg);
         } else {

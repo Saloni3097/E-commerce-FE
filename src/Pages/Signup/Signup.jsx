@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import { signupData } from "../../Components/ApiCalls/apis";
@@ -7,6 +7,7 @@ import { signupSchema } from "../../Components/Schemas";
 import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
 import Login from "../../Components/Login/Login";
+import appContext from "../../Context/ContextApp";
 import "./style.scss";
 const initialValues = {
   username: "",
@@ -18,10 +19,7 @@ const initialValues = {
 const Signup = () => {
   const [cookies, setCookie] = useCookies();
   const navigate = useNavigate();
-  const [logInBoxOpen, setLogInBoxOpen] = useState(false);
-  const handleClose = () => {
-    setLogInBoxOpen(false);
-  };
+  const handleProp = useContext(appContext);
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
@@ -143,16 +141,16 @@ const Signup = () => {
                 <a
                   style={{ color: "rgb(123, 190, 254)" }}
                   onClick={() => {
-                    setLogInBoxOpen(true);
+                    handleProp.setLogInBoxOpen(true);
                   }}
                 >
                   Sign In Now
                 </a>
               </p>
               <Login
-                show={logInBoxOpen}
-                onHide={handleClose}
-                boxProp={setLogInBoxOpen}
+                show={handleProp.logInBoxOpen}
+                onHide={handleProp.handleClose}
+                boxProp={handleProp.setLogInBoxOpen}
               />
             </Col>
           </Row>

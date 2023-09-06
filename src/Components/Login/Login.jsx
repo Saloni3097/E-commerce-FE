@@ -28,10 +28,11 @@ const Login = (props) => {
       validationSchema: loginSchema,
       validateOnChange: true,
       onSubmit: async (values, action) => {
+        // debugger;
         const res = await login(values);
         // console.log("values>>>>", res);
-        const tokenAns = jwt(res.data.jwtToken);
         if (res.status === 200 && res.data && res.data.jwtToken) {
+          const tokenAns = jwt(res.data.jwtToken);
           Cookies.set("token", `${res.data.jwtToken}`);
           toast.success(res.data.message);
           // console.log("Success", res.data.message);
@@ -40,12 +41,13 @@ const Login = (props) => {
           } else {
             setTimeout(() => {
               props.onHide();
-            }, 2000);
+            }, 1000);
           }
         } else {
           toast.error(res);
-          // console.log("Error", res);
+          // console.log("Error:>>>>>>>>> ", res);
         }
+
         action.resetForm();
       },
     });

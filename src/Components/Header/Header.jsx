@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Nav, Navbar, Container, Button, Row, Col } from "react-bootstrap";
 import logo from "../../Assets/Images/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import Login from "../../Components/Login/Login";
+import appContext from "../../Context/ContextApp";
 import "./style.scss";
-
 const Header = () => {
-  const [logInBoxOpen, setLogInBoxOpen] = useState(false);
-  const handleClose = () => {
-    setLogInBoxOpen(false);
-  };
+  const handleContext = useContext(appContext);
+
   return (
     <>
       <section className="navbar_wrapper">
@@ -36,12 +34,13 @@ const Header = () => {
                     </div>
                     <Button
                       onClick={() => {
-                        setLogInBoxOpen(true);
+                        handleContext.setLogInBoxOpen(true);
                       }}
                       style={{ padding: "0px 40px" }}
                     >
                       Login
                     </Button>
+
                     <NavLink className="nav_menu" to="/seller">
                       Become a Seller
                     </NavLink>
@@ -61,9 +60,9 @@ const Header = () => {
                 </Navbar.Collapse>
               </Navbar>
               <Login
-                show={logInBoxOpen}
-                onHide={handleClose}
-                boxProp={setLogInBoxOpen}
+                show={handleContext.logInBoxOpen}
+                onHide={handleContext.handleClose}
+                boxProp={handleContext.setLogInBoxOpen}
               />
             </Col>
 

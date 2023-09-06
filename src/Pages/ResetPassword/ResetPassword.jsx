@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import { resetPassword } from "../../Components/ApiCalls/apis";
 import { resetPasswordSchema } from "../../Components/Schemas";
 import { toast } from "react-toastify";
-import { useCookies } from "react-cookie";
 import Login from "../../Components/Login/Login";
 import Loader from "../../Components/Loader/Loader";
+import Cookies from "js-cookie";
+import jwt from "jwt-decode";
 import "./style.scss";
 // import { useNavigate } from "react-router-dom";
 const initialValues = {
@@ -15,7 +16,6 @@ const initialValues = {
 };
 const ResetPassword = () => {
   // const navigate = useNavigate();
-  // const [setCookie] = useCookies();
   const [logInBoxOpen, setLogInBoxOpen] = useState(false);
   const handleClose = () => {
     setLogInBoxOpen(false);
@@ -25,17 +25,15 @@ const ResetPassword = () => {
       initialValues,
       validationSchema: resetPasswordSchema,
       onSubmit: async (values, action) => {
-        const response = await resetPassword(values);
-        console.log("Response: ", response);
-        console.log("Values", values);
-        if (response.data && response.status === 200) {
-          toast.success(response.data.message);
-          // setCookie("Token", `${response.data.token}`, {
-          //   path: "/",
-          // });
-          // setLogInBoxOpen(true);
+        const res = await resetPassword(values);
+        // console.log("Response: ", res);
+        // console.log("Values", values);
+        if (res.data && res.status === 200 && res.data.jwtToken) {
+          // Cookies.set("token", `${res.data.jwtToken}`);
+          Cookies.get("token", `${res.data.jwtToken}`);
+          toast.success(res.data.msg);
         } else {
-          toast.error(response);
+          toast.error(res);
         }
         action.resetForm();
       },

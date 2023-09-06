@@ -1,11 +1,12 @@
 import "./App.css";
+import ContextProvider from "./Context/ContextProvider";
 import Routers from "./Routes/Routers";
 function App() {
   return (
     <div>
-      {/* <UserRouters/>
-      <SellerRouters/> */}
-      <Routers />
+      <ContextProvider>
+        <Routers />
+      </ContextProvider>
     </div>
   );
 }
