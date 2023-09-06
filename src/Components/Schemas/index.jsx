@@ -32,12 +32,12 @@ export const forgotPasswordSchema = Yup.object({
 
 //Reset Password Schema
 export const resetPasswordSchema = Yup.object({
-  new_password: Yup.string().min(8).required("Please enter the password!"),
+  newPassword: Yup.string().min(6).required("Please enter the password!"),
   // .matches(/[0-9]/, "Password requires a number")
   // .matches(/[a-z]/, "Password requires a lowercase letter")
   // .matches(/[A-Z]/, "Password requires an uppercase letter")
   // .matches(/[^\w]/, "Password requires a symbol"),
-  confirm_password: Yup.string()
+  confirmPassword: Yup.string()
     .required()
-    .oneOf([Yup.ref("new_password"), null], "Passwords must match"),
+    .oneOf([Yup.ref("newPassword"), null], "Passwords must match"),
 });

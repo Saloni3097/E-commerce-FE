@@ -11,8 +11,8 @@ import jwt from "jwt-decode";
 import "./style.scss";
 // import { useNavigate } from "react-router-dom";
 const initialValues = {
-  new_password: "",
-  confirm_password: "",
+  newPassword: "",
+  confirmPassword: "",
 };
 const ResetPassword = () => {
   // const navigate = useNavigate();
@@ -28,9 +28,9 @@ const ResetPassword = () => {
         const res = await resetPassword(values);
         // console.log("Response: ", res);
         // console.log("Values", values);
-        if (res.data && res.status === 200 && res.data.jwtToken) {
-          // Cookies.set("token", `${res.data.jwtToken}`);
+        if (res.data && res.status === 200) {
           Cookies.get("token", `${res.data.jwtToken}`);
+          // Cookies.set("token", `${res.data.jwtToken}`);
           toast.success(res.data.msg);
         } else {
           toast.error(res);
@@ -63,14 +63,14 @@ const ResetPassword = () => {
                   type="password"
                   className="text"
                   autoComplete="off"
-                  name="new_password"
+                  name="newPassword"
                   placeholder="New Password"
-                  value={values?.new_password}
+                  value={values?.newPassword}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {errors?.new_password && touched?.new_password ? (
-                  <p className="error">{errors?.new_password}</p>
+                {errors?.newPassword && touched?.newPassword ? (
+                  <p className="error">{errors?.newPassword}</p>
                 ) : null}
               </Form.Group>
 
@@ -80,14 +80,14 @@ const ResetPassword = () => {
                   type="password"
                   className="text"
                   autoComplete="off"
-                  name="confirm_password"
+                  name="confirmPassword"
                   placeholder="Confirm Password"
-                  value={values?.confirm_password}
+                  value={values?.confirmPassword}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {errors?.confirm_password && touched?.confirm_password ? (
-                  <p className="error">{errors?.confirm_password}</p>
+                {errors?.confirmPassword && touched?.confirmPassword ? (
+                  <p className="error">{errors?.confirmPassword}</p>
                 ) : null}
               </Form.Group>
 
