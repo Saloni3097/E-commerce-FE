@@ -9,7 +9,7 @@ import { getAllProducts } from "../../ApiCalls/apis";
 import { Link } from "react-router-dom";
 import "./style.scss";
 
-const BestProducts = ({ categoryIds }) => {
+const BestProducts = ({ category_name }) => {
   const [bestProducts, setBestProducts] = useState([]);
   const [productByCategory, setProductByCategory] = useState([]);
   const settings = {
@@ -23,7 +23,7 @@ const BestProducts = ({ categoryIds }) => {
   useEffect(() => {
     product();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryIds]);
+  }, [category_name]);
 
   const product = async () => {
     try {
@@ -33,10 +33,10 @@ const BestProducts = ({ categoryIds }) => {
       console.error(err);
     }
     setProductByCategory(
-      categoryIds?.map((category) => ({
+      category_name?.map((category) => ({
         category,
         products: bestProducts.filter(
-          (product) => product.categoryId === category
+          (product) => product?.ProductCategory?.categoryName === category
         ),
       }))
     );
@@ -64,7 +64,7 @@ const BestProducts = ({ categoryIds }) => {
                             <Card.Title className="mt-3 card_title">
                               {product?.productName}
                             </Card.Title>
-                            {/* <p>{product?.description}</p> */}
+                            <p>{product?.description}</p>
                             <p>₹{product?.price}</p>
                             <p>{product?.inStock}</p>
                           </Card.Body>

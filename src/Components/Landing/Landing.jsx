@@ -7,7 +7,7 @@ import { getCategories } from "../ApiCalls/apis";
 
 const Landing = () => {
   const [categories, setCategories] = useState([]);
-  const [categoryIds, setCategoryIds] = useState([]);
+  const [categoriesName, setCategoriesName] = useState([]);
   useEffect(() => {
     getcategory();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -17,7 +17,7 @@ const Landing = () => {
     try {
       const res = await getCategories();
       setCategories(res?.data);
-      setCategoryIds(res?.data.map((item) => item.id));
+      setCategoriesName(res?.data.map((item) => item.categoryName));
     } catch (err) {
       console.error(err);
     }
@@ -27,8 +27,7 @@ const Landing = () => {
     <>
       <Categories product_category={categories} />
       <Cardslider />
-      <BestProducts categoryIds={categoryIds} />
-      {/* <Productcard /> */}
+      <BestProducts category_name={categoriesName} />
     </>
   );
 };

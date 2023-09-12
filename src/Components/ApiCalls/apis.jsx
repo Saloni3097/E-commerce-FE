@@ -76,7 +76,7 @@ export const getSellerProducts = async () => {
       url: `https://e-commerce-sbtq.onrender.com/api/product/getSellerProduct`,
       method: "GET",
       headers: {
-        "Content-Type": "application.json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     });
@@ -127,18 +127,40 @@ export const getProductByCategory = async (payload) => {
 //   return res;
 // };
 
-//Add to Cart
-export const addToCart = async () => {
-  const res = await axios({
-    method: "GET",
-    url: "https://fakestoreapi.com/carts",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  return res;
+//Add to Cart(POST)
+export const addToCart = async (values) => {
+  try {
+    const res = await axios({
+      url: "https://e-commerce-sbtq.onrender.com/api/product/addCart",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: values,
+    });
+    return res;
+  } catch (error) {
+    let errorResponse = error.response.data.message;
+    console.log("Error:", errorResponse);
+    return errorResponse;
+  }
 };
 
+//Add to Cart(GET)
+export const getCartData = async (payload) => {
+  try {
+    const res = await axios({
+      url: `https://e-commerce-sbtq.onrender.com/api/product/addCart/${payload}`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
 //Forgot Password
 export const forgotPassword = async (values) => {
   try {
@@ -150,6 +172,7 @@ export const forgotPassword = async (values) => {
       },
       data: values,
     });
+    console.log("Res>>>>", res);
     return res;
   } catch (error) {
     let errorMessage = error.response.data.message;
@@ -183,7 +206,7 @@ export const resetPassword = async (values) => {
 // Get Product Detail
 export const getProductDetail = async (id) => {
   const res = await axios({
-    method: "get",
+    method: "GET",
     url: `https://e-commerce-sbtq.onrender.com/api/product/products/${id}`,
     headers: {
       "Content-Type": "application/json",

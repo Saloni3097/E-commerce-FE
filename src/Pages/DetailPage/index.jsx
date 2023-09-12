@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductDetail from "./ProductDetail";
 import { getProductDetail } from "../../Components/ApiCalls/apis";
-// import { Container } from "react-bootstrap";
 // import { ProductDetailJson } from "../../JsonData/ProductDetailJson";
 
 const Index = () => {
@@ -12,8 +11,8 @@ const Index = () => {
   const getProducDetail = async () => {
     console.log(">>", id);
     const res = await getProductDetail(id);
-    setProdDetail(res?.data?.data);
     console.log("result>>>>>: ", res);
+    setProdDetail(res?.data?.data);
   };
   console.log("prodDetail>>>", prodDetail);
   useEffect(() => {

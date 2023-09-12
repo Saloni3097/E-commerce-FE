@@ -36,7 +36,7 @@ const Login = (props) => {
           Cookies.set("token", `${res.data.jwtToken}`);
           toast.success(res.data.message);
           // console.log("Success", res.data.message);
-          if (tokenAns.role === "3") {
+          if (tokenAns.role === "seller") {
             navigate("/seller/dashboard");
           } else {
             setTimeout(() => {

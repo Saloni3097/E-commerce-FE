@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import { resetPassword } from "../../Components/ApiCalls/apis";

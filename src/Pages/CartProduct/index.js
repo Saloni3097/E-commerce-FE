@@ -1,18 +1,18 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 // import {CardJson} from '../../JsonData/AddtoCart';
 import Cart from "./Cart";
-import {addToCart} from "../../Components/ApiCalls/apis";
+import { getCartData } from "../../Components/ApiCalls/apis";
 const Index = () => {
   useEffect(() => {
     carts();
   }, []);
 
-  const [cartss, setcartss] = useState([]);
+  const [cartData, setcartData] = useState([]);
   const carts = async () => {
     try {
-      const res = await addToCart();
-      // console.log("Cart", res);
-      setcartss(res);
+      const res = await getCartData();
+      console.log("Cart", res);
+      setcartData(res?.data?.data);
     } catch (err) {
       console.error(err);
     }
@@ -20,7 +20,7 @@ const Index = () => {
   return (
     <>
       {/* <section><Cart cart_data={CardJson} /></section> */}
-      <Cart cart_data={cartss}/>
+      <Cart cart_data={cartData} />
     </>
   );
 };

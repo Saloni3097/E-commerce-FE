@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Nav, Navbar, Container, Button, Row, Col } from "react-bootstrap";
 import logo from "../../Assets/Images/logo.png";
 import { Link, NavLink } from "react-router-dom";

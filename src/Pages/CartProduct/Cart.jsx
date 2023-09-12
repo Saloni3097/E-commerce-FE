@@ -40,7 +40,7 @@ const Cart = ({ cart_data }) => {
                   <Row>
                     {/* <h6>cart section</h6> */}
                     <Col lg={3}>
-                      <img src={item.productImage} />
+                      <img src={item?.productImage} />
                     </Col>
                     <Col lg={6}>
                       <p>{item.id}</p>
@@ -79,13 +79,13 @@ const Cart = ({ cart_data }) => {
                   <hr />
                   <Row>
                     <Col lg={6}>
-                      <p>Price ({item.itemQuantity})</p>
+                      <p>Price ({item?.itemQuantity})</p>
                       <p>Discount</p>
                       <p>Delivery Charges</p>
                     </Col>
                     <Col lg={6}>
-                      <p>{item.calcAmount}</p>
-                      <p>{item.discount}</p>
+                      <p>{item?.calcAmount}</p>
+                      <p>{item?.discount}</p>
                       <p>Free</p>
                     </Col>
                   </Row>
@@ -95,7 +95,7 @@ const Cart = ({ cart_data }) => {
                       <p>Total Amount</p>
                     </Col>
                     <Col lg={6}>
-                      <p>{item.totalAmount}</p>
+                      <p>{item?.totalAmount}</p>
                     </Col>
                   </Row>
                 </div>

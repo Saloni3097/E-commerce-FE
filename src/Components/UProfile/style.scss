@@ -1,21 +1,72 @@
-.name_wrapper {
-  .name_button {
-    padding: 0.6rem 1.2rem;
-    outline: none;
-    border: 0;
-    color: #fff;
-    border-radius: 4px;
-    background: #f27e4c;
+// UserInfo
+.form_wrapper {
+  label {
+    font-weight: 600;
+    font-size: 16px;
     margin-top: -3px;
-    margin-left: 0px;
   }
-  .name_button:hover {
-    background: #b33b06;
+  .text {
+    opacity: 0.5;
+    border: 0.5px solid #1c1c1c;
+    border-radius: 10px;
+  }
+  // .check {
+  //   margin: 0;
+  // }
+
+  .name_wrapper {
+    .name_button {
+      padding: 0.6rem 1.2rem;
+      outline: none;
+      border: 0;
+      color: #fff;
+      border-radius: 4px;
+      background: #f27e4c;
+      margin-top: -3px;
+      margin-left: 0px;
+    }
+    .name_button:hover {
+      background: #b33b06;
+    }
+  }
+
+  .email_wrapper {
+    .save_button {
+      padding: 0.6rem 1.2rem;
+      outline: none;
+      border: 0;
+      color: #fff;
+      border-radius: 4px;
+      background: #f27e4c;
+      margin-top: 29px;
+      margin-left: 8px;
+    }
+    .save_button:hover {
+      background: #b33b06;
+    }
   }
 }
+// Address Information
+.form {
+  h5 {
+    color: #f27e4c;
+  }
+  label {
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 15px;
+  }
 
-.email_wrapper {
-  .save_button {
+  .text {
+    opacity: 0.5;
+    border: 0.5px solid #1c1c1c;
+    border-radius: 10px;
+  }
+  .error {
+    font-size: 10px;
+    color: #b22b27;
+  }
+  button {
     padding: 0.6rem 1.2rem;
     outline: none;
     border: 0;
@@ -23,9 +74,21 @@
     border-radius: 4px;
     background: #f27e4c;
     margin-top: 26px;
-    margin-left: 104px;
+    margin-left: 2px;
   }
-  .save_button:hover {
+  button:hover {
     background: #b33b06;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
 }
