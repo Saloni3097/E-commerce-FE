@@ -44,7 +44,7 @@ const SellerLogin = () => {
   const handleLogin = () => {
     setModalShow(true);
   };
-  // console.log(categoryName);
+
   return (
     <div className="sellerLoginMainWraper">
       <Login

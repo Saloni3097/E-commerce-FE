@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductDetail from "./ProductDetail";
 import { getProductDetail } from "../../Components/ApiCalls/apis";
-// import { ProductDetailJson } from "../../JsonData/ProductDetailJson";
 
 const Index = () => {
   const [prodDetail, setProdDetail] = useState([]);

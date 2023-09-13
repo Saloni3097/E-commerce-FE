@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from "react";
-// import {CardJson} from '../../JsonData/AddtoCart';
+// import { useParams } from "react-router-dom";
 import Cart from "./Cart";
 import { getCartData } from "../../Components/ApiCalls/apis";
+
 const Index = () => {
   useEffect(() => {
     carts();
   }, []);
 
   const [cartData, setcartData] = useState([]);
+  // const { tempId } = useParams();
+
   const carts = async () => {
     try {
       const res = await getCartData();
-      console.log("Cart", res);
-      setcartData(res?.data?.data);
+      setcartData(res?.data?.result[0]);
+      console.log("Cart???", res?.data?.result[0]);
     } catch (err) {
       console.error(err);
     }
   };
+
   return (
     <>
-      {/* <section><Cart cart_data={CardJson} /></section> */}
       <Cart cart_data={cartData} />
     </>
   );

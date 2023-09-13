@@ -2,23 +2,23 @@ import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../Components/ApiCalls/apis";
+import Cookies from "js-cookie";
 import "./style.scss";
 
 const ProductDetail = (props) => {
   const navigate = useNavigate();
-  const addCart = async () => {
+  const addCarts = async () => {
     const cartData = {
       productName: props?.product_detail[0]?.productName,
     };
     try {
       const response = await addToCart(cartData);
-
-      console.log("Name", props?.product_detail[0]?.productName);
       console.log("Cart added successfully", response);
+      Cookies.set("tempId", `${response?.data?.result?.id}`);
     } catch (error) {
       console.error(error);
     }
-    // navigate("/cart");
+    navigate(`/cart/${props?.product_detail[0]?.id}`);
   };
   // console.log("data>>>>>", props.product_detail[0]);
   // console.log("Props", props);
@@ -58,7 +58,7 @@ const ProductDetail = (props) => {
               </ul>
               <ul>
                 <li>
-                  <button onClick={addCart}>Add to Cart</button>
+                  <button onClick={addCarts}>Add to Cart</button>
                 </li>
                 <li>
                   <button>Buy Now</button>

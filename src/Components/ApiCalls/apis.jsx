@@ -2,6 +2,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const token = Cookies.get("token");
+const tempId = Cookies.get("tempId");
+
 // Login
 export const login = async (values) => {
   try {
@@ -13,11 +15,9 @@ export const login = async (values) => {
       },
       data: values,
     });
-    // console.log(res.data);
     return res;
   } catch (error) {
     let errorRes = error.response.data.error;
-    // console.log("Error: ", errorRes);
     return errorRes;
   }
 };
@@ -47,7 +47,6 @@ export const getCategories = async () => {
       Authorization: `Bearer ${token}`,
     },
   });
-  // console.log("res", res);
   return res;
 };
 
@@ -92,8 +91,6 @@ export const getAllProducts = async () => {
   const res = await axios({
     method: "GET",
     url: `https://e-commerce-sbtq.onrender.com/api/product/getProducts`,
-    //  api/product/getProducts?productName=dg
-
     headers: {
       "Content-Type": "application/json",
     },
@@ -106,7 +103,6 @@ export const getAllProducts = async () => {
 export const getProductByCategory = async (payload) => {
   const res = await axios({
     method: "GET",
-    // url: `https://e-commerce-sbtq.onrender.com/api/product/getProductByCategory?categoryName=${payload}`,
     url: `https://fakestoreapi.com/products/category/${payload}`,
     headers: {
       "Content-Type": "application/json",
@@ -114,18 +110,6 @@ export const getProductByCategory = async (payload) => {
   });
   return res;
 };
-
-// Get All Products by FAKEAPI
-// export const getProducts = async () => {
-//   const res = await axios({
-//     method: "GET",
-//     url: "https://fakestoreapi.com/products",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
-//   return res;
-// };
 
 //Add to Cart(POST)
 export const addToCart = async (values) => {
@@ -138,6 +122,7 @@ export const addToCart = async (values) => {
       },
       data: values,
     });
+    console.log("res", res);
     return res;
   } catch (error) {
     let errorResponse = error.response.data.message;
@@ -147,18 +132,21 @@ export const addToCart = async (values) => {
 };
 
 //Add to Cart(GET)
-export const getCartData = async (payload) => {
+export const getCartData = async () => {
   try {
     const res = await axios({
-      url: `https://e-commerce-sbtq.onrender.com/api/product/addCart/${payload}`,
       method: "GET",
+      params: {
+        tempId: tempId,
+      },
+      url: `https://e-commerce-sbtq.onrender.com/api/product/getAddCart/${tempId}}`,
       headers: {
         "Content-Type": "application/json",
       },
     });
     return res;
   } catch (error) {
-    console.log(error);
+    console.log("Error:", error);
   }
 };
 //Forgot Password
@@ -183,7 +171,6 @@ export const forgotPassword = async (values) => {
 
 //Reset Password
 export const resetPassword = async (values) => {
-  // debugger;
   try {
     const res = await axios({
       url: "https://e-commerce-sbtq.onrender.com/api/user/reset_password",

@@ -23,12 +23,11 @@ const Routers = () => {
         <Route exact index element={<Home />} />
         <Route path="/products/:category" element={<Products />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/cart" element={<Cart />} />
+        <Route exact path="/cart/:id" element={<Cart />} />
         <Route exact path="/signup" element={<Signup />} />
         <Route path="/categoryProducts/:categoryName" element={<Category />} />
         <Route path="/productDetail/:id" element={<ProductDetails />} />
         <Route path="/userProfile" element={<Profile />} />
-
         <Route exact path="/forgotPassword" element={<ForgotPassword />} />
         <Route exact path="/resetPassword" element={<ResetPassword />} />
         <Route index element={<Home />} />

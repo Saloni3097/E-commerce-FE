@@ -11,9 +11,7 @@ import SaveCards from "../../Components/UProfile/SaveCards";
 const Index = () => {
   const [userValue, setUserValue] = useState("");
   const handleUserValue = (e) => {
-    console.log(">>>>", e.target.name);
     setUserValue(e.target.name);
-    console.log(">", userValue);
   };
   return (
     <section className="sidebar_wrapper">

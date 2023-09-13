@@ -30,78 +30,75 @@ const Cart = ({ cart_data }) => {
               <h6>E-Commerce</h6>
             </div>
           </Col>
-          {cart_data?.data?.map((item) => (
-            <Row>
-              <Col lg={8}>
-                {/* <div className="cart_product">
-                  <h6>E-Commerce</h6>
-                </div> */}
-                <div className="cart_product">
-                  <Row>
-                    {/* <h6>cart section</h6> */}
-                    <Col lg={3}>
-                      <img src={item?.productImage} />
-                    </Col>
-                    <Col lg={6}>
-                      <p>{item.id}</p>
-                      <p>{item.userId}</p>
-                      <p>{item.date}</p>
-                      <button>REMOVE</button>
-                    </Col>
-                    <Col lg={3}>
-                      <Button className="button_placeOrder">PLACE ORDER</Button>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col lg={3}>
-                      <div className="counterBox">
-                        <div>
-                          {" "}
-                          <button className="dec_button" onClick={decrement}>
-                            <AiOutlineMinusCircle />
-                          </button>
-                        </div>
-                        <div>{count}</div>
-                        <div>
-                          {" "}
-                          <button className="inc_button" onClick={increment}>
-                            <AiOutlinePlusCircle />
-                          </button>
-                        </div>
+          {/* {cart_data?.data?.map((item) => ( */}
+          <Row>
+            <Col lg={8}>
+              <div className="cart_product">
+                <Row>
+                  {/* <h6>cart section</h6> */}
+                  <Col lg={3}>
+                    <img src={cart_data?.productImage} />
+                  </Col>
+                  <Col lg={6}>
+                    {/* <p>{cart_data?.id}</p> */}
+                    {/* <p>{item.userId}</p>
+                    <p>{item.date}</p> */}
+                    <button>REMOVE</button>
+                  </Col>
+                  <Col lg={3}>
+                    <Button className="button_placeOrder">PLACE ORDER</Button>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col lg={3}>
+                    <div className="counterBox">
+                      <div>
+                        {" "}
+                        <button className="dec_button" onClick={decrement}>
+                          <AiOutlineMinusCircle />
+                        </button>
                       </div>
-                    </Col>
-                  </Row>
-                </div>
-              </Col>
-              <Col lg={4}>
-                <div className="cart_calc">
-                  <h6>Price Detail </h6>
-                  <hr />
-                  <Row>
-                    <Col lg={6}>
-                      <p>Price ({item?.itemQuantity})</p>
-                      <p>Discount</p>
-                      <p>Delivery Charges</p>
-                    </Col>
-                    <Col lg={6}>
-                      <p>{item?.calcAmount}</p>
-                      <p>{item?.discount}</p>
-                      <p>Free</p>
-                    </Col>
-                  </Row>
-                  <hr />
-                  <Row>
-                    <Col lg={6}>
-                      <p>Total Amount</p>
-                    </Col>
-                    <Col lg={6}>
-                      <p>{item?.totalAmount}</p>
-                    </Col>
-                  </Row>
-                </div>
-              </Col>
-            </Row>
-          ))}
+                      <div>{count}</div>
+                      <div>
+                        {" "}
+                        <button className="inc_button" onClick={increment}>
+                          <AiOutlinePlusCircle />
+                        </button>
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
+            </Col>
+            <Col lg={4}>
+              <div className="cart_calc">
+                <h6>Price Detail </h6>
+                <hr />
+                <Row>
+                  <Col lg={6}>
+                    <p>Price</p>
+                    <p>Discount</p>
+                    <p>Delivery Charges</p>
+                  </Col>
+                  <Col lg={6}>
+                    {/* <p>{cart_data?.calcAmount}</p> */}
+                    <p>{cart_data?.discount}</p>
+                    <p>Free</p>
+                  </Col>
+                </Row>
+                <hr />
+                <Row>
+                  <Col lg={6}>
+                    <p>Total Amount</p>
+                  </Col>
+                  <Col lg={6}>
+                    {" "}
+                    <p>{cart_data?.totalAmount}</p>
+                  </Col>
+                </Row>
+              </div>
+            </Col>
+          </Row>
         </Container>
       </section>
     </>

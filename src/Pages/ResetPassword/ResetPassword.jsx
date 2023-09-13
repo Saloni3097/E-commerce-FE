@@ -29,7 +29,6 @@ const ResetPassword = () => {
         } else {
           toast.error(res);
         }
-
         action.resetForm();
       },
     });
