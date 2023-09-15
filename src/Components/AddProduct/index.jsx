@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { getCategories, productUplolad } from "../ApiCalls/apis";
 import product from "../../Assets/Images/product.jpeg";
+import { toast } from "react-toastify";
 import "./style.scss";
 const AddProduct = () => {
   const { id } = useParams();
@@ -17,9 +18,9 @@ const AddProduct = () => {
     productName: "",
     description: "",
     price: null,
-    inStock: false,
+    inStock: null,
     category: "",
-    productImageUrl: null,
+    productImage: null,
   };
   useEffect(() => {
     getAllcategories();
@@ -37,16 +38,23 @@ const AddProduct = () => {
         fdata.append("price", values.price);
         fdata.append("inStock", values.inStock);
         fdata.append("category", values?.category);
-        fdata.append("productImageUrl", productImgage);
+        fdata.append("productImage", productImgage);
         setDataPreview(values);
-        await productUplolad(fdata);
+        const res = await productUplolad(fdata);
+        console.log(res);
+        if (res.status === 200) {
+          toast.success(res.data.message);
+        } else {
+          toast.error(res.data.message);
+        }
         action.resetForm();
       },
     });
-
+  // console.log(">>>>>>", values?.category);
   const getAllcategories = async () => {
     const { data } = await getCategories();
     setProductCategories(data);
+    // console.log("productCategories", data);
   };
 
   const getFile = (e) => {
@@ -117,10 +125,10 @@ const AddProduct = () => {
               </Form.Group>
               <Form.Group>
                 <Form.Label>Stock</Form.Label>
-                <Form.Check
-                  type="checkbox"
+                <Form.Control
+                  type="number"
                   name="inStock"
-                  className="checkbox"
+                  className="text"
                   value={values?.inStock}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -139,17 +147,24 @@ const AddProduct = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 >
-                  <option value="">Select Category</option>
+                  <option>Select</option>
+                  {productCategories.map((item) => (
+                    <option value={item?.categoryName}>
+                      {item?.categoryName}
+                      {/* {console.log("getCate", item?.categoryName)} */}
+                    </option>
+                  ))}
+
                   {/* <option value="">Select Category</option>
                   <option value="mobile">Mobile</option>
                   <option value="Accesories">Accesories</option>
                   <option value="Mens_Wear">Men's Wear</option>
                   <option value="Womens_Wear">Women's Wear</option> */}
-                  {productCategories.map((item) => (
+                  {/* {productCategories.map((item) => (
                     <option value={item.categoryName}>
                       {item.categoryName}
                     </option>
-                  ))}
+                  ))} */}
                 </Form.Select>
               </Form.Group>
               {/* <select name='category' value={values?.category} onChange={handleChange} onBlur={handleBlur}>
@@ -164,13 +179,17 @@ const AddProduct = () => {
                 <p className="error">{errors.category}</p>
               ) : null}
 
-              <Button
+              {/* <button
                 type="submit"
                 className="mt-3"
                 style={{ backgroundColor: "#F27E4C", border: "none" }}
               >
                 Add Product
-              </Button>
+              </button> */}
+
+              <button type="submit" value="Submit">
+                Add
+              </button>
             </Form>
           </Col>
           <Col md="4">

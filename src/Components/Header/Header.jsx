@@ -1,13 +1,36 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Nav, Navbar, Container, Button, Row, Col } from "react-bootstrap";
 import logo from "../../Assets/Images/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Navigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import Login from "../../Components/Login/Login";
 import appContext from "../../Context/ContextApp";
+import { getItemLocalStorage } from "../../Utils/BrowserServices";
+import { useNavigate } from "react-router-dom";
 import "./style.scss";
+let checkLogin;
 const Header = () => {
+  const navigate = useNavigate();
   const handleContext = useContext(appContext);
+  const [loginData, setLoginData] = useState();
+  useEffect(() => {
+    setInterval(() => {
+      loginstateHandle();
+    }, 1000);
+  }, [checkLogin]);
+
+  const loginstateHandle = () => {
+    checkLogin = getItemLocalStorage("isLogin");
+    if (checkLogin === "true") {
+      setLoginData(true);
+    } else {
+      setLoginData(false);
+    }
+  };
+
+  const getProfile = () => {
+    navigate("/userProfile");
+  };
 
   return (
     <>
@@ -32,25 +55,23 @@ const Header = () => {
                         placeholder="Search for products, brand and more..."
                       />
                     </div>
-                    <Button
-                      onClick={() => {
-                        handleContext.setLogInBoxOpen(true);
-                      }}
-                      style={{ padding: "0px 40px" }}
-                    >
-                      Login
-                    </Button>
+                    {loginData && loginData ? (
+                      <Button onClick={getProfile}>Profile</Button>
+                    ) : (
+                      <Button
+                        onClick={() => {
+                          handleContext.setLogInBoxOpen(true);
+                        }}
+                        style={{ padding: "0px 40px" }}
+                      >
+                        Login
+                      </Button>
+                    )}
 
                     <NavLink className="nav_menu" to="/seller">
                       Become a Seller
                     </NavLink>
-                    <NavLink
-                      className="nav_menu"
-                      to="/"
-                      // style={({ isActive }) => ({
-                      //   color: isActive ? "#f27e4c" : "#333333",
-                      // })}
-                    >
+                    <NavLink className="nav_menu" to="/">
                       Home
                     </NavLink>
                     <NavLink className="nav_menu" to="/cart">

@@ -4,8 +4,11 @@ import Cardslider from "./Cardslide/Cardslider";
 import BestProducts from "./BestProducts/BestProducts";
 import { getCategories } from "../ApiCalls/apis";
 // import Productcard from "./Multicards/Productcard";
+import Cookies from "js-cookie";
 
 const Landing = () => {
+  const token = Cookies.get("token");
+  // console.log("token>>>>: ", token);
   const [categories, setCategories] = useState([]);
   const [categoriesName, setCategoriesName] = useState([]);
   useEffect(() => {

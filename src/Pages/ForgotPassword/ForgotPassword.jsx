@@ -20,11 +20,9 @@ const ForgotPassword = () => {
       validationSchema: forgotPasswordSchema,
       onSubmit: async (values, action) => {
         const res = await forgotPassword(values);
-        // console.log("Response: ", res);
-        // console.log("Values", values);
         if (res.status === 200 && res.data && res.data.jwtToken) {
           const tokenResp = jwt(res.data.jwtToken);
-          console.log("Token Res", tokenResp);
+          // console.log("Token Res", tokenResp);
           Cookies.set("token", `${res.data.jwtToken}`);
           toast.success(res.data.msg);
         } else {

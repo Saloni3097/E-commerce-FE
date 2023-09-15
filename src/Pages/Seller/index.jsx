@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import "./index.css";
+// import "./index.css";
 import AddProduct from "../../Components/AddProduct";
 import AllProducts from "../../Components/AllProducts";
 import { CgProfile } from "react-icons/cg";
@@ -9,33 +9,27 @@ import { IoMdNotifications } from "react-icons/io";
 import { Outlet, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import seller_logo from "../../Assets/Images/seller_logo.png";
+import "./index.scss";
 const DashBoard = () => {
   const [sideBtnShow, setSideBtnShow] = useState("");
   // const [cookies,setCookie] = useCookies([])
   const sidebarComponent = (e) => {
-    console.log(e.target.name);
     setSideBtnShow(e.target.name);
   };
   const navigate = useNavigate();
   // useEffect(() => {
   //   // debugger
   //   let res = Cookies.get("isLogin");
-  //   console.log(res);
   //   if (res === "false") {
   //     navigate("/login");
   //   }
-  //   //   console.log(Cookies.get('isLogin'));
   // }, []);
 
   const handleLogout = () => {
-    // setCookie('isLogin',false,{});
-    // cookies.isLogin = false;
-    // console.log("cookie",cookies.isLogin);
-    Cookies.set("isLogin", "false", {});
     navigate("/login");
   };
   return (
-    <div>
+    <div className="dasshboard_header">
       <Container fluid>
         <Row>
           <Col md="2" className="float-left d-inline-block w-25">

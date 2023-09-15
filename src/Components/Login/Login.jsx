@@ -7,6 +7,8 @@ import { login } from "../../Components/ApiCalls/apis";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import jwt from "jwt-decode";
+import { setItemLocalStorage } from "../../Utils/BrowserServices";
+
 import "./style.scss";
 const Login = (props) => {
   const navigate = useNavigate();
@@ -30,12 +32,11 @@ const Login = (props) => {
       onSubmit: async (values, action) => {
         // debugger;
         const res = await login(values);
-        // console.log("values>>>>", res);
         if (res.status === 200 && res.data && res.data.jwtToken) {
           const tokenAns = jwt(res.data.jwtToken);
           Cookies.set("token", `${res.data.jwtToken}`);
           toast.success(res.data.message);
-          // console.log("Success", res.data.message);
+          setItemLocalStorage("isLogin", true);
           if (tokenAns.role === "seller") {
             navigate("/seller/dashboard");
           } else {
@@ -45,7 +46,6 @@ const Login = (props) => {
           }
         } else {
           toast.error(res);
-          // console.log("Error:>>>>>>>>> ", res);
         }
 
         action.resetForm();

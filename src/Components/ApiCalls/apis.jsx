@@ -37,35 +37,45 @@ export const signupData = async (values) => {
 
 // Get Categories
 export const getCategories = async () => {
-  const res = await axios({
-    mode: "cors",
-    url: "https://e-commerce-sbtq.onrender.com/api/category/Category",
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return res;
+  try {
+    const res = await axios({
+      mode: "cors",
+      // url: "https://fakestoreapi.com/products/categories",
+      url: "https://e-commerce-sbtq.onrender.com/api/category/Category",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        // Authorization: `Bearer ${tokens}`,
+      },
+    });
+    // console.log("res", res);
+    return res;
+  } catch (error) {
+    return error.message;
+  }
 };
 
 //////////SELLER APIS//////////
-export const productUplolad = async (values, id) => {
-  console.log("Values", values, id);
-  await axios({
-    url: `https://e-commerce-sbtq.onrender.com/api/product/uploadProduct`,
-    method: "POST",
-    headers: {
-      "Content-Type": "multipart/form-data",
-      Authorization: `Bearer ${token}`,
-    },
-    data: values,
-  })
-    .then((res) => console.log(res))
-    .catch((err) => {
-      console.log(err);
+export const productUplolad = async (values) => {
+  debugger;
+  try {
+    console.log("Values", values);
+    const res = await axios({
+      url: `https://e-commerce-sbtq.onrender.com/api/product/uploadProduct`,
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+      data: values,
     });
+    console.log(res);
+    return res;
+  } catch (error) {
+    console.log(error);
+    return error.response;
+  }
 };
 
 // Get Seller's Product
@@ -87,7 +97,6 @@ export const getSellerProducts = async () => {
 
 // Get All Products
 export const getAllProducts = async () => {
-  // console.log(categoryName);
   const res = await axios({
     method: "GET",
     url: `https://e-commerce-sbtq.onrender.com/api/product/getProducts`,
@@ -95,7 +104,6 @@ export const getAllProducts = async () => {
       "Content-Type": "application/json",
     },
   });
-  console.log("res>", res);
   return res;
 };
 
@@ -160,11 +168,9 @@ export const forgotPassword = async (values) => {
       },
       data: values,
     });
-    console.log("Res>>>>", res);
     return res;
   } catch (error) {
     let errorMessage = error.response.data.message;
-    console.log("Error: ", errorMessage);
     return errorMessage;
   }
 };
@@ -182,7 +188,6 @@ export const resetPassword = async (values) => {
       },
       data: values,
     });
-    console.log("res token", res);
     return res;
   } catch (error) {
     let errorMsg = error.response.data.msg;

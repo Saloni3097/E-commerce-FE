@@ -4,26 +4,21 @@ import CategorySection from "./CategorySection";
 import { getAllProducts } from "../../Components/ApiCalls/apis";
 
 const Index = () => {
-  const { categoryName } = useParams();
+  const { id } = useParams();
   const [productByCate, setProductByCate] = useState([]);
-
   const getProductByCat = async () => {
     const res = await getAllProducts();
     setProductByCate(
-      res?.data?.data.filter((product) => product.category === categoryName)
+      res?.data?.data?.filter((product) => product?.categoryId == id)
     );
   };
-  console.log("data", productByCate);
   useEffect(() => {
     getProductByCat();
   }, []);
   return (
     <>
       <section>
-        <CategorySection
-          category_data={productByCate}
-          category_name={categoryName}
-        />
+        <CategorySection category_data={productByCate} category_id={id} />
       </section>
     </>
   );

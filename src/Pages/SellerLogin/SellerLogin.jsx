@@ -27,7 +27,7 @@ const SellerLogin = () => {
   const categories = async () => {
     const res = await getCategories();
     console.log("categories res", res.data);
-    setCategoriesName(res.data);
+    if (res.status === 200 && res.data) setCategoriesName(res.data);
   };
   const settings = {
     autoplay: true,

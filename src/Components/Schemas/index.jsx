@@ -9,11 +9,9 @@ export const loginSchema = Yup.object({
 //Add Product Schema
 export const addProductSchema = Yup.object({
   productName: Yup.string().required("Please enter product name!"),
-  productDescription: Yup.string().required(
-    "Please enter product description!"
-  ),
-  productPrice: Yup.number().required("Please enter product Price!"),
-  stock: Yup.number().required("Please enter stock availability!"),
+  description: Yup.string().required("Please enter product description!"),
+  price: Yup.number().required("Please enter product Price!"),
+  // stock: Yup.number().required("Please enter stock availability!"),
   category: Yup.string().required("Please select the category!"),
 });
 

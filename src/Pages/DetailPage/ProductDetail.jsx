@@ -13,7 +13,7 @@ const ProductDetail = (props) => {
     };
     try {
       const response = await addToCart(cartData);
-      console.log("Cart added successfully", response);
+      // console.log("Cart added successfully", response);
       Cookies.set("tempId", `${response?.data?.result?.id}`);
     } catch (error) {
       console.error(error);

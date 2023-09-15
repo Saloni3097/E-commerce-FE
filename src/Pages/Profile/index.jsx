@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-// import UserProfile from "../../Components/Common/UserProfile";
-// import ProfilePage from "./ProfilePage";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "./style.scss";
 import UserInfo from "../../Components/UProfile/UserInfo";
@@ -8,11 +7,22 @@ import AddressInfo from "../../Components/UProfile/AddressInfo";
 import GiftCards from "../../Components/UProfile/GiftCards";
 import SaveUPI from "../../Components/UProfile/SaveUPI";
 import SaveCards from "../../Components/UProfile/SaveCards";
+import Cookies from "js-cookie";
+import { setItemLocalStorage } from "../../Utils/BrowserServices";
+
 const Index = () => {
+  const navigate = useNavigate();
   const [userValue, setUserValue] = useState("");
   const handleUserValue = (e) => {
     setUserValue(e.target.name);
   };
+
+  const handleLogout = () => {
+    setItemLocalStorage("isLogin", false);
+    Cookies.remove("token");
+    navigate("/");
+  };
+
   return (
     <section className="sidebar_wrapper">
       <Container fluid>
@@ -98,7 +108,7 @@ const Index = () => {
                 <ul>
                   <li>
                     {/* <h6>Logout</h6> */}
-                    <Button>Logout</Button>
+                    <Button onClick={handleLogout}>Logout</Button>
                   </li>
                 </ul>
               </div>

@@ -1,11 +1,11 @@
 .category_section {
   margin-top: 5px;
   .image_Box {
+    width: 100%;
+    text-align: center;
     img.card-img {
-      width: 100%;
       object-fit: contain;
-      height: 152px;
-      text-align: center;
+      height: 250px;
     }
   }
   a {
@@ -16,17 +16,12 @@
     .card-title {
       text-align: center;
       font-size: 14px;
-
-      text-align: center;
-      font-size: 14px;
-      white-space: nowrap;
- 
-      overflow: hidden;
-      text-overflow: ellipsis;
-      
     }
     .card-text {
       text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }

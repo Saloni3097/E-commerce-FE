@@ -1,0 +1,43 @@
+//
+.SellerMenu {
+  background-color: rgb(242, 126, 76);
+  border-radius: 0px 20px 20px 0px;
+}
+._heading {
+  padding: 20px 20px;
+  text-align: center;
+}
+._heading p {
+  margin: 0px !important;
+}
+.side_bar {
+  /* background-color: #F27E4C; */
+  /* padding: 10px 10px; */
+  color: #ffffff;
+  padding: 0px !important;
+  height: 1000px;
+}
+._btns ul {
+  list-style: none;
+  padding: 0px !important;
+  border-radius: 0px 10px 10px 0px;
+  text-align: center;
+}
+._btns ul li {
+  padding: 10px 3px;
+  /* padding: 10px 59px; */
+}
+._btns ul a {
+  /* padding: 10px 3px; */
+  //   padding: 10px 46px;
+  background: transparent;
+  border: none;
+  width: 100%;
+  color: #ffffff;
+  text-decoration: none;
+  margin-top: 10px;
+}
+._btns ul a :hover {
+  background-color: #803413;
+  /* padding: 10px 59px; */
+}

@@ -23,7 +23,7 @@ const ResetPassword = () => {
       validationSchema: resetPasswordSchema,
       onSubmit: async (values, action) => {
         const res = await resetPassword(values);
-        console.log("Response", res);
+        // console.log("Response", res);
         if (res.status === 200 && res.data) {
           toast.success(res.data.message);
         } else {

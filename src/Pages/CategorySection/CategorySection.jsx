@@ -10,15 +10,16 @@ const CategorySection = (props) => {
         <Row>
           {props?.category_data.map((item, key) => (
             <Col lg={3}>
-              {console.log("keys: ", item?.key)}
-              {/* <Link to={`/${item.productType}/${item.id}`}> */}
-              <Link to={`/productDetail/${item.id}`}>
+              <Link to={`/productDetail/${item?.id}`}>
                 <Card className="mb-3">
                   <Card.Body className="image_Box">
-                    <Card.Img src={item.productImage} />
-                    <Card.Title className="mt-2">{item.productName}</Card.Title>
-                    <Card.Text>₹{item.price}</Card.Text>
-                    <Card.Text>Stock: {item.inStock}</Card.Text>
+                    <Card.Img draggable="false" src={item?.productImage} />
+                    <Card.Title className="mt-2">
+                      {item?.productName}
+                    </Card.Title>
+                    <Card.Text>₹{item?.price}</Card.Text>
+                    <Card.Text>{item?.description}</Card.Text>
+                    <Card.Text>Stock: {item?.inStock}</Card.Text>
                   </Card.Body>
                 </Card>
               </Link>
